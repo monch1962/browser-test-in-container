@@ -1,0 +1,24 @@
+{
+  "name": "browser-test-in-container",
+  "version": "1.0.0",
+  "description": "Headless browser testing in container",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/webdriverio/bin/wdio"
+  },
+  "keywords": [
+    "web",
+    "test"
+  ],
+  "author": "David Mitchell",
+  "license": "MIT",
+  "dependencies": {
+    "webdriverio": "^4.14.4"
+  },
+  "devDependencies": {
+    "wdio-cucumber-framework": "^2.2.8",
+    "wdio-junit-reporter": "^0.4.4",
+    "wdio-selenium-standalone-service": "0.0.12",
+    "wdio-spec-reporter": "^0.1.5"
+  }
+}
