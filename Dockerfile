@@ -13,6 +13,7 @@ RUN apt update \
 
 # Working directory
 RUN mkdir -p /workdir/output
+RUN mkdir -p /workdir/features
 WORKDIR /workdir
 
 # Install dependencies if any change

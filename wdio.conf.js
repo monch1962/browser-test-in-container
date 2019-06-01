@@ -1,4 +1,12 @@
 exports.config = {
+    reporterOptions: {
+      junit: {
+          outputDir: './output/',
+          outputFileFormat: function(opts) { // optional
+              return `${opts.capabilities}.results-${opts.cid}.xml`
+          }
+      }
+  },
     
     //
     // ==================
@@ -38,14 +46,6 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    //capabilities: [{
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
-        //maxInstances: 5,
-        //
-        //browserName: 'firefox'
-    //}],
     capabilities: [
       {
           'browserName': 'chrome',
@@ -60,7 +60,7 @@ exports.config = {
               args: ['-headless']
           }
       }
-  ],
+    ],
     //
     // ===================
     // Test Configurations
@@ -270,12 +270,5 @@ exports.config = {
      */
     // onComplete: function(exitCode, config, capabilities) {
     // }
-    reporterOptions: {
-      junit: {
-          outputDir: './output/',
-          outputFileFormat: function(opts) { // optional
-              return `${opts.capabilities}.results-${opts.cid}.xml`
-          }
-      }
-}
+
 }
