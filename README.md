@@ -2,7 +2,31 @@
 
 This repo shows how to build a container suitable for running headless browser tests within a Docker container.
 
-## Steps to build the Docker container:
+## Quick start
+
+### Install dependencies
+
+`$ npm install`
+
+### (optional) Reconfigure webdriver 
+
+Only necessary if you want to execute e.g. within a separate Selenium Grid or on BrowserStack, rather than within the container itself
+
+`$ npm test -- config`
+
+### Build the container
+
+`$ docker build . -t browser-automation`
+
+### Execute tests using webdriver running inside the container
+
+Ensure 
+- feature and step files are in ~/features
+- the directory where you want results & screenshots saved is ~/output
+
+`$ docker run docker run -v "$(pwd)/output:/workdir/output" browser-automation`
+
+## Steps to build from scratch
 
 `$ npm init`
 
@@ -20,17 +44,17 @@ Next we want to configure webdriverio. There's a bunch of options you might want
 
 `$ npm test --config`
 
-  ? Where do you want to execute your tests?                              On my local machine
-  ? Which framework do you want to use?                                   cucumber
-  ? Shall I install the framework adapter for you?                        Yes
-  ? Where are your feature files located?                                 ./features/**/*.feature
-  ? Where are your step definitions located?                              ./features/**/*.js
-  ? Which reporter do you want to use?                                    spec, junit
-  ? Shall I install the reporter library for you?                         Yes
-  ? Do you want to add a service to your test setup?                      selenium-standalone
-  ? Shall I install the services for you?                                 Yes
-  ? Level of logging verbosity                                            silent
-  ? In which directory should screenshots gets saved if a command fails?  ./output
-  ? What is the base url?                                                 http://localhost
+- Where do you want to execute your tests?                              On my local machine
+- Which framework do you want to use?                                   cucumber
+- Shall I install the framework adapter for you?                        Yes
+- Where are your feature files located?                                 ./features/**/*.feature
+- Where are your step definitions located?                              ./features/**/*.js
+- Which reporter do you want to use?                                    spec, junit
+- Shall I install the reporter library for you?                         Yes
+- Do you want to add a service to your test setup?                      selenium-standalone
+- Shall I install the services for you?                                 Yes
+- Level of logging verbosity                                            silent
+- In which directory should screenshots gets saved if a command fails?  ./output
+- What is the base url?                                                 http://localhost
 
 
