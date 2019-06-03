@@ -20,6 +20,10 @@ WORKDIR /workdir
 COPY package.json package-lock.json ./
 RUN npm install
 
+# (optional) Install cypress
+# Feel free to comment this out if you're not creating tests using Cypress
+# RUN npm install --save cypress
+
 # Copy tests
 COPY . ./
 
