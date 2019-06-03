@@ -24,7 +24,7 @@ Assuming
 - feature and step files you want to run are in ./features
 - the directory where you want results & screenshots saved is ./output
 
-`$ docker run -v "$(pwd)/output:/workdir/output" -v "$(pwd)/features:/workdir/features" browser-automation
+`$ docker run -v "$(pwd)/output:/workdir/output" -v "$(pwd)/features:/workdir/features" browser-automation`
 ## Steps to build from scratch
 
 `$ npm init`
