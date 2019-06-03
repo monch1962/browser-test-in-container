@@ -14,10 +14,12 @@ RUN apt update \
 # Working directory
 RUN mkdir -p /workdir/output
 RUN mkdir -p /workdir/features
+RUN mkdir -p /workdir/webdriver-config
 WORKDIR /workdir
 
 # Install dependencies if any change
 COPY package.json package-lock.json ./
+COPY webdriver-config/wdio.conf.js ./webdriver-config/
 RUN npm install
 
 # (optional) Install cypress
