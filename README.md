@@ -31,7 +31,7 @@ If you want to execute tests other than on Chrome and/or Firefox running in the 
 - feature and step files you want to run are in e.g. ./features
 - the directory where you want results & screenshots saved is e.g. ./output
 
-`$ docker run -v "$(pwd)/output:/workdir/output" -v "$(pwd)/webdriver-config:/workdir/webdriver-config -v "$(pwd)/features:/workdir/features" browser-automation`
+`$ docker run -v "$(pwd)/output:/workdir/output" -v "$(pwd)/webdriver-config:/workdir/webdriver-config" -v "$(pwd)/features:/workdir/features" browser-automation`
 
 ## Steps to build from scratch
 
