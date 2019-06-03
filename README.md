@@ -20,16 +20,18 @@ Only necessary if you want to execute e.g. within a separate Selenium Grid or on
 
 ### Execute tests using webdriver running inside the container
 
+The intended use of this container is that you define your own features & step files, have a local directory where you want test results & screenshots saved, and (optionally) supply your own `wdio.conf.js` file if you want to have your tests run outside of the container itself. Some options for test execution include Selenium Grid, Zalenium (`https://github.com/zalando/zalenium`), Source Labs, Browser Stack, local physical mobile devices, emulators.
+
 Assuming 
-- feature and step files you want to run are in ./features
-- the directory where you want results & screenshots saved is ./output
+- feature and step files you want to run are in `./features`
+- the directory where you want results & screenshots saved is `./output`
 
 `$ docker run -v "$(pwd)/output:/workdir/output" -v "$(pwd)/features:/workdir/features" browser-automation`
 
 If you want to execute tests other than on Chrome and/or Firefox running in the local container, you'll need to use a different WebdriverIO config file (wdio.conf.js). To do this:
-- make the necessary changes to your wdio.conf.js file, and store them in e.g. ./webdriver-config/wdio.conf.js
-- feature and step files you want to run are in e.g. ./features
-- the directory where you want results & screenshots saved is e.g. ./output
+- make the necessary changes to your `wdio.conf.js` file, and store them in e.g. `./webdriver-config/wdio.conf.js`
+- feature and step files you want to run are in e.g. `./features`
+- the directory where you want results & screenshots saved is e.g. `./output`
 
 `$ docker run -v "$(pwd)/output:/workdir/output" -v "$(pwd)/webdriver-config:/workdir/webdriver-config" -v "$(pwd)/features:/workdir/features" browser-automation`
 
