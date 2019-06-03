@@ -4,7 +4,7 @@
   "description": "Headless browser testing in container",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/webdriverio/bin/wdio"
+    "test": "./node_modules/webdriverio/bin/wdio ./webdriver-conf/wdio.conf.js"
   },
   "keywords": [
     "web",
