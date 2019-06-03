@@ -53,17 +53,17 @@ Next we want to configure webdriverio. There's a bunch of options you might want
 
 `$ npm test -- config`
 
-- Where do you want to execute your tests?                              On my local machine
-- Which framework do you want to use?                                   cucumber
-- Shall I install the framework adapter for you?                        Yes
-- Where are your feature files located?                                 ./features/**/*.feature
-- Where are your step definitions located?                              ./features/**/*.js
-- Which reporter do you want to use?                                    spec, junit
-- Shall I install the reporter library for you?                         Yes
-- Do you want to add a service to your test setup?                      selenium-standalone
-- Shall I install the services for you?                                 Yes
-- Level of logging verbosity                                            silent
-- In which directory should screenshots gets saved if a command fails?  ./output/
-- What is the base url?                                                 http://localhost
+- Where do you want to execute your tests?                              `On my local machine`
+- Which framework do you want to use?                                   `cucumber`
+- Shall I install the framework adapter for you?                        `Yes`
+- Where are your feature files located?                                 `./features/**/*.feature`
+- Where are your step definitions located?                              `./features/**/*.js`
+- Which reporter do you want to use?                                    `spec, junit`
+- Shall I install the reporter library for you?                         `Yes`
+- Do you want to add a service to your test setup?                      `selenium-standalone`
+- Shall I install the services for you?                                 `Yes`
+- Level of logging verbosity                                            `silent`
+- In which directory should screenshots gets saved if a command fails?  `./output/`
+- What is the base url?                                                 `http://localhost`
 
 
