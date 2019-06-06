@@ -35,6 +35,15 @@ If you want to execute tests other than on Chrome and/or Firefox running in the 
 
 `$ docker run -v "$(pwd)/output:/workdir/output" -v "$(pwd)/webdriver-config:/workdir/webdriver-config" -v "$(pwd)/features:/workdir/features" browser-automation`
 
+If you want to execute tests other than on Chrome and/or Firefox running in the local container, you'll need to use a different WebdriverIO config file (wdio.conf.js). To do this:
+- make the necessary changes to your `wdio.conf.js` file, and store them in e.g. `./webdriver-config/wdio.conf.js`
+- feature and step files you want to run are in e.g. `./features`
+- the directory where you want results & screenshots saved is e.g. `./output`
+- you only want to run tests that are tagged with `@jabberwocky`
+
+`$ docker run -e TAGS='@jabberwocky' -v "$(pwd)/output:/workdir/output" -v "$(pwd)/webdriver-config:/workdir/webdriver-config" -v "$(pwd)/features:/workdir/features" browser-automation`
+
+
 ## Steps to build from scratch
 
 `$ npm init`

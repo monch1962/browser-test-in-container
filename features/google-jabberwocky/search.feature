@@ -3,6 +3,7 @@ Feature: Google search
   I want to be able to search for terms
   So that I can find information about topics
 
+  @jabberwocky
   Scenario: can find information about Jabberwocky
     Given the Google search page loaded
     When I search for 'jabberwocky'
