@@ -4,7 +4,7 @@
   "description": "Headless browser testing in container",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/webdriverio/bin/wdio ./webdriver-config/wdio.conf.js"
+    "test": "if [ -z $TAGS ]; then ./node_modules/webdriverio/bin/wdio ./webdriver-config/wdio.conf.js; else ./node_modules/webdriverio/bin/wdio --cucumberOpts.tagExpression=$TAGS ./webdriver-config/wdio.conf.js; fi"
   },
   "keywords": [
     "web",
