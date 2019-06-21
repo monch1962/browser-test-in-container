@@ -22,12 +22,10 @@ COPY package.json package-lock.json ./
 COPY webdriver-config/wdio.conf.js ./webdriver-config/
 RUN npm install
 
-# (optional) Install cypress
-# Feel free to comment this out if you're not creating tests using Cypress
-# RUN npm install --save cypress
-
 # Copy tests
 COPY . ./
+
+ENV BROWSER_API "selenium"
 
 # Execute tests
 ENTRYPOINT ["npm", "test"]
