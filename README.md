@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/monch1962/monch1962/_apis/build/status/monch1962.browser-test-in-container?branchName=master)](https://dev.azure.com/monch1962/monch1962/_build/latest?definitionId=5&branchName=master)
+
 # CONTAINER-BASED BROWSER TESTING
 
 This repo shows how to build a container suitable for running headless browser tests within a Docker container.
