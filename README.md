@@ -8,7 +8,7 @@ This repo shows how to build a container suitable for running headless browser t
 
 `$ npm install`
 
-### (optional) Reconfigure webdriver 
+### (optional) Reconfigure webdriver
 
 Only necessary if you want to execute e.g. within a separate Selenium Grid or on BrowserStack, rather than within the container itself
 
@@ -22,29 +22,31 @@ Only necessary if you want to execute e.g. within a separate Selenium Grid or on
 
 The intended use of this container is that you define your own features & step files, have a local directory where you want test results & screenshots saved, and (optionally) supply your own `wdio.conf.js` file if you want to have your tests run outside of the container itself. Some options for test execution include Selenium Grid, Zalenium (`https://github.com/zalando/zalenium`), Source Labs, Browser Stack, local physical mobile devices, emulators.
 
-Assuming 
-- feature and step files you want to run are in `./features`
-- the directory where you want results & screenshots saved is `./output`
+Assuming
 
-`$ docker run -v "$(pwd)/output:/workdir/output" -v "$(pwd)/features:/workdir/features" browser-automation`
+- feature and step files you want to run are in `./features`
+- the directory where you want results & screenshots saved is `./results`
+
+`$ docker run -v "$(pwd)/results:/workdir/results" -v "$(pwd)/features:/workdir/features" browser-automation`
 
 If you want to execute tests other than on Chrome and/or Firefox running in the local container, you'll need to use a different WebdriverIO config file (wdio.conf.js). To do this:
+
 - make the necessary changes to your `wdio.conf.js` file, and store them in e.g. `./webdriver-config/wdio.conf.js`
 - feature and step files you want to run are in e.g. `./features`
-- the directory where you want results & screenshots saved is e.g. `./output`
+- the directory where you want results & screenshots saved is e.g. `./results`
 
-`$ docker run -v "$(pwd)/output:/workdir/output" -v "$(pwd)/webdriver-config:/workdir/webdriver-config" -v "$(pwd)/features:/workdir/features" browser-automation`
+`$ docker run -v "$(pwd)/results:/workdir/results" -v "$(pwd)/webdriver-config:/workdir/webdriver-config" -v "$(pwd)/features:/workdir/features" browser-automation`
 
 In addition to the above, you might decide you only want to run tests that are tagged with `@jabberwocky`. To do this:
 
-`$ docker run -e TAGS='@jabberwocky' -v "$(pwd)/output:/workdir/output" -v "$(pwd)/webdriver-config:/workdir/webdriver-config" -v "$(pwd)/features:/workdir/features" browser-automation`
-
+`$ docker run -e TAGS='@jabberwocky' -v "$(pwd)/results:/workdir/results" -v "$(pwd)/webdriver-config:/workdir/webdriver-config" -v "$(pwd)/features:/workdir/features" browser-automation`
 
 ## Steps to build from scratch
 
 `$ npm init`
 
 When responding to the questions that come up, ensure you answer these questions as follows:
+
 - entry point `index.js`
 - test command `./node_modules/webdriverio/bin/wdio`
 
@@ -58,17 +60,15 @@ Next we want to configure webdriverio. There's a bunch of options you might want
 
 `$ npm test -- config`
 
-- Where do you want to execute your tests?                              `On my local machine`
-- Which framework do you want to use?                                   `cucumber`
-- Shall I install the framework adapter for you?                        `Yes`
-- Where are your feature files located?                                 `./features/**/*.feature`
-- Where are your step definitions located?                              `./features/**/*.js`
-- Which reporter do you want to use?                                    `spec, junit`
-- Shall I install the reporter library for you?                         `Yes`
-- Do you want to add a service to your test setup?                      `selenium-standalone`
-- Shall I install the services for you?                                 `Yes`
-- Level of logging verbosity                                            `silent`
-- In which directory should screenshots gets saved if a command fails?  `./output/`
-- What is the base url?                                                 `http://localhost`
-
-
+- Where do you want to execute your tests? `On my local machine`
+- Which framework do you want to use? `cucumber`
+- Shall I install the framework adapter for you? `Yes`
+- Where are your feature files located? `./features/**/*.feature`
+- Where are your step definitions located? `./features/**/*.js`
+- Which reporter do you want to use? `spec, junit`
+- Shall I install the reporter library for you? `Yes`
+- Do you want to add a service to your test setup? `selenium-standalone`
+- Shall I install the services for you? `Yes`
+- Level of logging verbosity `silent`
+- In which directory should screenshots gets saved if a command fails? `./output/`
+- What is the base url? `http://localhost`

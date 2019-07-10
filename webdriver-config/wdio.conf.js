@@ -1,13 +1,13 @@
 exports.config = {
     reporterOptions: {
-      junit: {
-          outputDir: './output/',
-          outputFileFormat: function(opts) { // optional
-              return `${opts.capabilities}.results-${opts.cid}.xml`
-          }
-      }
-  },
-    
+        junit: {
+            outputDir: './results/',
+            outputFileFormat: function (opts) { // optional
+                return `${opts.capabilities}.results-${opts.cid}.xml`
+            }
+        }
+    },
+
     //
     // ==================
     // Specify Test Files
@@ -46,20 +46,19 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [
-      {
-          'browserName': 'chrome',
-          'chromeOptions': {
-              args: ['--headless', '--no-sandbox']
-          }
-      },
-      {
-          maxInstances: 5,
-          browserName: 'firefox',
-          "moz:firefoxOptions": {
-              args: ['-headless']
-          }
-      }
+    capabilities: [{
+            browserName: 'chrome',
+            'chromeOptions': {
+                args: ['--headless', '--no-sandbox']
+            }
+        },
+        {
+            maxInstances: 5,
+            browserName: 'firefox',
+            "moz:firefoxOptions": {
+                args: ['-headless']
+            }
+        }
     ],
     //
     // ===================
@@ -86,7 +85,7 @@ exports.config = {
     bail: 0,
     //
     // Saves a screenshot to a given path if a command fails.
-    screenshotPath: './output/',
+    screenshotPath: './results/screenshots/',
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
@@ -139,26 +138,27 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/reporters/dot.html
-    reporters: ['spec','junit'],
+    reporters: ['spec', 'junit'],
     //
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
-        require: ['./features/**/*.js'],        // <string[]> (file/dir) require files before executing features
-        backtrace: false,   // <boolean> show full backtrace for errors
-        compiler: [],       // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
-        dryRun: false,      // <boolean> invoke formatters without executing steps
-        failFast: false,    // <boolean> abort the run on first failure
+        // require: ['./features/**/*.js'], // <string[]> (file/dir) require files before executing features
+        require: ['./step-definitions/**/*.js'], // <string[]> (file/dir) require files before executing features
+        backtrace: false, // <boolean> show full backtrace for errors
+        compiler: ["js:babel-register"], // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
+        dryRun: false, // <boolean> invoke formatters without executing steps
+        failFast: false, // <boolean> abort the run on first failure
         format: ['pretty'], // <string[]> (type[:path]) specify the output format, optionally supply PATH to redirect formatter output (repeatable)
-        colors: true,       // <boolean> disable colors in formatter output
-        snippets: true,     // <boolean> hide step definition snippets for pending steps
-        source: true,       // <boolean> hide source uris
-        profile: [],        // <string[]> (name) specify the profile to use
-        strict: false,      // <boolean> fail if there are any undefined or pending steps
-        tags: [],           // <string[]> (expression) only execute the features or scenarios with tags matching the expression
-        timeout: 20000,     // <number> timeout for step definitions
+        colors: true, // <boolean> disable colors in formatter output
+        snippets: true, // <boolean> hide step definition snippets for pending steps
+        source: true, // <boolean> hide source uris
+        profile: [], // <string[]> (name) specify the profile to use
+        strict: false, // <boolean> fail if there are any undefined or pending steps
+        tags: [], // <string[]> (expression) only execute the features or scenarios with tags matching the expression
+        timeout: 20000, // <number> timeout for step definitions
         ignoreUndefinedDefinitions: false, // <boolean> Enable this config to treat undefined definitions as warnings.
     },
-    
+
     //
     // =====
     // Hooks
@@ -198,7 +198,7 @@ exports.config = {
      */
     // beforeCommand: function (commandName, args) {
     // },
-    
+
     /**
      * Runs before a Cucumber feature
      * @param {Object} feature feature details
@@ -229,13 +229,25 @@ exports.config = {
      */
     // afterScenario: function (scenario) {
     // },
+    afterScenario: function (scenario) {
+        const {
+            join
+        } = require('path')
+        const {
+            screenshotPath
+        } = require('./wdio.conf').config
+        // console.log('scenario detail: ' + JSON.stringify(scenario))
+        const getScreenshotPath = (name) => join(screenshotPath, `${browser.desiredCapabilities.browserName}.${name}.png`)
+
+        browser.saveScreenshot(getScreenshotPath(scenario.name))
+    },
     /**
      * Runs after a Cucumber feature
      * @param {Object} feature feature details
      */
     // afterFeature: function (feature) {
     // },
-    
+
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {String} commandName hook command name

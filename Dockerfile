@@ -12,7 +12,8 @@ RUN apt update \
   && apt install --no-install-recommends -y google-chrome-stable firefox
 
 # Working directory
-RUN mkdir -p /workdir/output
+RUN mkdir -p /workdir/results
+RUN mkdir -p /workdir/results/screenshots
 RUN mkdir -p /workdir/features
 RUN mkdir -p /workdir/webdriver-config
 WORKDIR /workdir
