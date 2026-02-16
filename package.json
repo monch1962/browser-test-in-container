@@ -19,7 +19,7 @@
     "babel-register": "^6.11.5",
     "chai": "^4.2.0",
     "esm": "^3.2.25",
-    "webdriverio": "^4.14.4"
+    "webdriverio": "^5.0.0"
   },
   "devDependencies": {
     "wdio-cucumber-framework": "^2.2.8",
